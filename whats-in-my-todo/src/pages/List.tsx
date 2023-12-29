@@ -15,6 +15,10 @@ export const List = () => {
 
   const [title, setTitle] = React.useState<string>("");
   const [priority, setPriority] = React.useState<PriorityType>("MEDIUM");
+
+  React.useEffect(() => {
+    console.log(checked, title, setTitle, priority, setPriority);
+  }, [checked, priority, title]);
   return (
     <PageLayout sx={{ padding: "48px 24px" }}>
       <Stack>
