@@ -26,7 +26,15 @@ export const SortFilter = () => {
     >
       {Object.entries(DateFilter).map(([value, label]) => {
         return (
-          <MenuItem key={label} value={value}>
+          <MenuItem
+            key={label}
+            value={value}
+            sx={{
+              fontSize: "12px",
+              fontWeight: 400,
+              height: "32px",
+            }}
+          >
             {label}
           </MenuItem>
         );
