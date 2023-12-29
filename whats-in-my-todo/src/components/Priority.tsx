@@ -32,7 +32,7 @@ export const Priority = ({ text }: Props) => {
         backgroundColor: backgroundColor,
         color: fontColor,
         padding: "2px 4px",
-        marginRight: "16px",
+        marginRight: "8px",
       }}
     >
       {text}

@@ -5,8 +5,12 @@ import { SortFilter } from "../components/SortFilter";
 import { TodoBox } from "../components/TodoBox";
 import React from "react";
 import { PriorityType } from "../interfaces";
+import TodoHeader from "../components/TodoHeader";
+import { useNavigate } from "react-router-dom";
 
 export const List = () => {
+  const navigate = useNavigate();
+
   // TODO: API 쓸때 사용할거임
   const [checked, setChecked] = React.useState<boolean>(false);
   const handleIsChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,43 +20,15 @@ export const List = () => {
   const [title, setTitle] = React.useState<string>("");
   const [priority, setPriority] = React.useState<PriorityType>("MEDIUM");
 
+  const handleBtnClick = () => {
+    navigate("/new");
+  };
   React.useEffect(() => {
     console.log(checked, title, setTitle, priority, setPriority);
   }, [checked, priority, title]);
   return (
     <PageLayout sx={{ padding: "48px 24px" }}>
-      <Stack>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Typography sx={{ fontSize: "20px", fontWeight: 700 }}>
-            WHATS IN MY TODO
-          </Typography>
-          <Button
-            variant="contained"
-            sx={{
-              fontSize: "12px",
-              fontWeight: 700,
-              backgroundColor: "#D9D9D9",
-              boxShadow: "none",
-              borderRadius: "8px",
-              "&:hover": {
-                backgroundColor: "#8a8a8a",
-                boxShadow: "none",
-              },
-            }}
-          >
-            NEW
-          </Button>
-        </Stack>
-        <Typography
-          sx={{ fontSize: "12px", fontWeight: 400, marginBottom: "16px" }}
-        >
-          할일을 기록하세요
-        </Typography>
-      </Stack>
+      <TodoHeader buttonText="NEW" onClick={handleBtnClick} />
       <Stack
         direction="row"
         justifyContent="space-between"
@@ -66,6 +42,7 @@ export const List = () => {
         return (
           <TodoBox
             key={idx}
+            id={idx}
             checked={val.checked}
             handleIsChecked={handleIsChecked}
             title={val.title}
@@ -81,26 +58,31 @@ export const MOCK_DATA = [
   {
     checked: false,
     title: "Title1",
+    content: "hello world",
     priority: "HIGH",
   },
   {
     checked: false,
     title: "Title2",
+    content: "im so hungry lol",
     priority: "LOW",
   },
   {
     checked: true,
     title: "Title3",
+    content: "happy new year",
     priority: "HIGH",
   },
   {
     checked: true,
     title: "Title4",
+    content: "coffee, water, tea",
     priority: "MEDIUM",
   },
   {
     checked: false,
     title: "Title5",
+    content: "sleep, walking",
     priority: "LOW",
   },
 ];
