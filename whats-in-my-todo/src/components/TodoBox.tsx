@@ -1,13 +1,21 @@
 import { Checkbox, Stack, Typography } from "@mui/material";
 import { Priority } from "./Priority";
 import React from "react";
+import { PriorityType } from "../interfaces";
 
 interface Props {
-  isChecked: boolean;
+  checked: boolean;
+  handleIsChecked: (e: React.ChangeEvent<HTMLInputElement>) => void;
   title: string;
+  priority: PriorityType;
 }
 
-export const TodoBox = ({ isChecked, title }: Props) => {
+export const TodoBox = ({
+  checked,
+  title,
+  handleIsChecked,
+  priority,
+}: Props) => {
   return (
     <Stack
       direction="row"
@@ -15,6 +23,7 @@ export const TodoBox = ({ isChecked, title }: Props) => {
       justifyContent="space-between"
       sx={{
         padding: "8px",
+        marginY: "6px",
         background: "#F5F5F5",
         borderRadius: "8px",
         height: "56px",
@@ -22,14 +31,20 @@ export const TodoBox = ({ isChecked, title }: Props) => {
     >
       <Stack direction="row" alignItems="center">
         {/* checkbox */}
-        <Checkbox checked={isChecked} size="small" />
+        <Checkbox
+          checked={checked}
+          onChange={handleIsChecked}
+          size="small"
+          color="default"
+          disableRipple
+        />
         {/* title */}
         <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
           {title}
         </Typography>
       </Stack>
       {/* priority */}
-      <Priority text="LOW" />
+      <Priority text={priority} />
     </Stack>
   );
 };
