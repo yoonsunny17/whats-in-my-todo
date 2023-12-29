@@ -4,3 +4,5 @@ export const DateFilter = {
 };
 
 export type DateFilterType = keyof typeof DateFilter;
+
+export type PriorityType = "HIGH" | "MEDIUM" | "LOW";
